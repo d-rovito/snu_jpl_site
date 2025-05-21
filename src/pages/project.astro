@@ -1,0 +1,89 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css"; // Updated path
+---
+
+<BaseLayout title="SNU JPL Research - Project Details">
+  <Header />
+
+  <main>
+    <section class="content">
+      <div class="container">
+        <h2>Project: Mosquito-Borne Disease Prediction</h2>
+        <h3>Objective</h3>
+        <p>
+          The goal is to develop a mosquito-borne disease risk model for central
+          Oklahoma using in situ and spaceborne remote sensing data. The model
+          identifies environmental variables and land cover characteristics that
+          predict mosquito abundance, with applications to other regions like
+          Costa Rica’s Talamanca Mountains. See our <a href="/methods"
+            >methods</a
+          > for details on data processing.
+        </p>
+        <h3>Team</h3>
+        <p>
+          Our team consists of six SNU undergraduate students, mentored by Dr.
+          Caio França (SNU) and Dr. Erika Podest (NASA JPL). Students are
+          organized into three Focus Groups to tackle different aspects of the
+          research. Meet the team on our <a href="/team">team page</a>.
+        </p>
+        <h3>Focus Groups</h3>
+        <ul>
+          <li>
+            <strong>Focus Group I: In-Situ Correlations</strong> - Analyzes mosquito
+            abundance against in-situ variables (e.g., Mesonet data: temperature,
+            precipitation, soil moisture). Incorporates land cover from Focus Group
+            II to develop and validate a model.
+          </li>
+          <li>
+            <strong>Focus Group II: Land Cover Classification</strong> - Generates
+            monthly land cover maps using Sentinel-1 and Sentinel-2 data in Google
+            Earth Engine, employing Random Forest classification to support correlation
+            analyses.
+          </li>
+          <li>
+            <strong>Focus Group III: Remote Sensing Correlations</strong> - Explores
+            mosquito abundance with satellite data (e.g., MODIS, GPM, SMAP), comparing
+            results with Focus Group I to refine risk indicators.
+          </li>
+        </ul>
+        <h3>Research Questions</h3>
+        <p>We are investigating key questions, including:</p>
+        <ul>
+          <li>
+            How do environmental drivers affect mosquito composition between
+            early and late seasons?
+          </li>
+          <li>
+            Do species-specific responses differ from community-wide responses
+            to environmental variables?
+          </li>
+          <li>
+            How do spatial and temporal variations influence mosquito abundance
+            and species richness?
+          </li>
+          <li>
+            Are sites within the same land cover associated with different
+            species richness, and if so, why?
+          </li>
+          <li>Does previous-year rainfall impact mosquito abundance?</li>
+        </ul>
+        <p>
+          Preliminary findings will be shared on our <a href="/findings"
+            >findings page</a
+          > as they become available.
+        </p>
+        <h3>Application</h3>
+        <p>
+          The developed model and workflow will be applied to additional trap
+          sites in another location and/or Costa Rica to test its usability,
+          enhancing public health strategies for disease mitigation.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

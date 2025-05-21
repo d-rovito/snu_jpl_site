@@ -1,0 +1,52 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css"; // Updated path
+---
+
+<BaseLayout title="SNU JPL Research - Methods">
+  <Header />
+
+  <main>
+    <section class="content">
+      <div class="container">
+        <h2>Research Methods</h2>
+        <h3>Remote Sensing and Data Processing</h3>
+        <p>
+          Our research leverages remote sensing data from multiple satellite
+          missions, processed primarily through Google Earth Engine (GEE). We
+          retrieve environmental variables such as temperature (MODIS
+          MYD21A1D/N), precipitation (GPM v6), soil moisture (SMAP), and
+          humidity (AIRS) for the NWN2 trap site and other locations in Oklahoma
+          from April 2018 to November 2023. Sentinel-1 and Sentinel-2 data are
+          used to generate monthly land cover maps via Random Forest
+          classification, identifying features like open water, inundated
+          vegetation, and forested areas.
+        </p>
+        <h3>Ecological Modeling</h3>
+        <p>
+          General Linear Models (GLMs) are developed using R to explore
+          correlations between mosquito abundance and environmental variables
+          (e.g., air temperature, precipitation, soil moisture). In-situ data
+          from the Oklahoma Mesonet, including weekly averages for temperature,
+          humidity, and solar radiation, are cross-validated with remote sensing
+          data. A one-way ANOVA is used to compare datasets, ensuring model
+          accuracy.
+        </p>
+        <h3>Google Colab Integration</h3>
+        <p>
+          Google Colab serves as our central platform for data processing,
+          integrating GEE scripts with Python for analysis. Our <a
+            href="https://colab.research.google.com/"
+            target="_blank">Colab notebook</a
+          > (placeholder link) allows users to specify date ranges, buffer zones
+          (1 km radius around trap sites), and environmental parameters, generating
+          visualizations like NDVI bar graphs and time series charts.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

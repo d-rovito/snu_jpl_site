@@ -1,0 +1,31 @@
+---
+import "../styles/header.css";
+---
+
+<header class="fade-in">
+  <div class="container">
+    <a href="/" class="logo">
+      <img src="/whiteSNUlogo.svg" alt="SNU Logo" width="120" height="auto" />
+    </a>
+    <nav>
+      <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+      <ul class="nav-menu">
+        <li><a href="/project">Project Information</a></li>
+        <li><a href="/findings">Findings</a></li>
+        <li><a href="/methods">Methods</a></li>
+        <li><a href="/team">Team</a></li>
+        <li><a href="/conferences">Conferences</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <script>
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navMenu = document.querySelector(".nav-menu");
+    if (menuToggle && navMenu) {
+      menuToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("active");
+      });
+    }
+  </script>
+</header>

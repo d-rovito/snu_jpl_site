@@ -1,0 +1,78 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+import conferencePlaceholder from "../assets/conference-placeholder.jpg";
+---
+
+<BaseLayout title="SNU JPL Research - Conferences">
+  <Header />
+
+  <main>
+    <section class="content">
+      <div class="container">
+        <h2>Conferences</h2>
+        <p>
+          Our team has presented findings and methodologies from the
+          mosquito-borne disease prediction project at various conferences.
+          Below are some of the events where we shared our work, with more to be
+          added as opportunities arise.
+        </p>
+
+        <div class="conference-row">
+          <div class="conference-text">
+            <h3>Conference 1 Here</h3>
+            <ul>
+              <li><strong>Date</strong>: Month Day, year</li>
+              <li><strong>Location</strong>: City, State, Country</li>
+              <li>
+                <strong>Presentation</strong>: If present, include title and
+                details of the presentation.
+              </li>
+              <li>
+                <strong>Details</strong>: Include a brief description of the
+                presentation or poster, highlighting key findings
+              </li>
+            </ul>
+          </div>
+          <Image
+            src={conferencePlaceholder}
+            alt="International Remote Sensing Symposium 2024 presentation"
+            class="conference-image"
+            width={300}
+            height={200}
+          />
+        </div>
+
+        <div class="conference-row">
+          <div class="conference-text">
+            <h3>Conference 2 Here</h3>
+            <ul>
+              <li><strong>Date</strong>: Month Day, year</li>
+              <li><strong>Location</strong>: City, State, Country</li>
+              <li>
+                <strong>Presentation</strong>: If present, include title and
+                details of the presentation.
+              </li>
+              <li>
+                <strong>Details</strong>: Include a brief description of the
+                presentation or poster, highlighting key findings
+              </li>
+            </ul>
+          </div>
+          <Image
+            src={conferencePlaceholder}
+            alt="International Remote Sensing Symposium 2024 presentation"
+            class="conference-image"
+            width={300}
+            height={200}
+          />
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

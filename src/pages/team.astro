@@ -1,0 +1,93 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+import personPlaceholder from "../assets/person-placeholder.jpg";
+---
+
+<BaseLayout title="SNU JPL Research - Team">
+  <Header />
+
+  <main>
+    <section class="content">
+      <div class="container">
+        <h2>Our Team</h2>
+        <p>
+          The project team includes six SNU undergraduate students, mentored by
+          Dr. Caio França (SNU) and Dr. Erika Podest (NASA JPL). Below are
+          placeholder profiles, to be updated with actual team members.
+        </p>
+        <div class="team-grid">
+          <div class="team-card">
+            <Image
+              src={personPlaceholder}
+              alt="John Doe 1"
+              class="team-photo"
+              width={150}
+              height={150}
+            />
+            <h3>John Doe</h3>
+            <p class="team-title">Undergraduate Researcher</p>
+            <p>
+              John is a dedicated student at SNU, contributing to the
+              mosquito-borne disease prediction project. His work focuses on
+              analyzing environmental data to support model development.
+            </p>
+          </div>
+          <div class="team-card">
+            <Image
+              src={personPlaceholder}
+              alt="John Doe 2"
+              class="team-photo"
+              width={150}
+              height={150}
+            />
+            <h3>John Doe</h3>
+            <p class="team-title">Undergraduate Researcher</p>
+            <p>
+              John is a dedicated student at SNU, contributing to the
+              mosquito-borne disease prediction project. His work focuses on
+              analyzing environmental data to support model development.
+            </p>
+          </div>
+          <div class="team-card">
+            <Image
+              src={personPlaceholder}
+              alt="John Doe 3"
+              class="team-photo"
+              width={150}
+              height={150}
+            />
+            <h3>John Doe</h3>
+            <p class="team-title">Undergraduate Researcher</p>
+            <p>
+              John is a dedicated student at SNU, contributing to the
+              mosquito-borne disease prediction project. His work focuses on
+              analyzing environmental data to support model development.
+            </p>
+          </div>
+          <div class="team-card">
+            <Image
+              src={personPlaceholder}
+              alt="John Doe 4"
+              class="team-photo"
+              width={150}
+              height={150}
+            />
+            <h3>John Doe</h3>
+            <p class="team-title">Undergraduate Researcher</p>
+            <p>
+              John is a dedicated student at SNU, contributing to the
+              mosquito-borne disease prediction project. His work focuses on
+              analyzing environmental data to support model development.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

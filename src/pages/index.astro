@@ -1,16 +1,67 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="SNU JPL Research - Mosquito-Borne Disease Prediction"
+  pageClass="hero-page"
+>
+  <Header />
+
+  <main>
+    <section class="hero">
+      <div class="hero-overlay">
+        <div class="container">
+          <h2>Predicting Mosquito-Borne Disease Outbreaks</h2>
+          <p>
+            Southern Nazarene University collaborates with NASA JPL to develop a
+            risk model for mosquito-borne diseases using remote sensing data in
+            Oklahoma.
+          </p>
+          <div class="button-group">
+            <a href="/project" class="demo-button">Project Details</a>
+            <a href="/methods" class="demo-button">Methods</a>
+            <a href="/team" class="demo-button">Meet the Team</a>
+          </div>
+          <a href="/project" class="cta-button">Explore the Project</a>
+        </div>
+      </div>
+    </section>
+    <section class="content">
+      <div class="container">
+        <h3>Project Overview</h3>
+        <p>
+          Our team of six SNU undergraduate students, mentored by Dr. Caio
+          França and Dr. Erika Podest (NASA JPL), is working to predict
+          mosquito-borne disease outbreaks. By analyzing in situ and spaceborne
+          remote sensing data, we aim to identify environmental and land cover
+          predictors of mosquito abundance in Oklahoma, with potential
+          applications to other regions like Costa Rica.
+        </p>
+        <ul>
+          <li>
+            Three focus groups explore correlations, land cover classification,
+            and remote sensing data.
+          </li>
+          <li>
+            Using tools like Google Earth Engine, R, and Google Colab for data
+            analysis.
+          </li>
+          <li>
+            Collaborating with NASA JPL through the Maximizing Student Potential
+            program.
+          </li>
+          <li>
+            Addressing key research questions on mosquito ecology and disease
+            risk.
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

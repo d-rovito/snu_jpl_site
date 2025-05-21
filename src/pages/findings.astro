@@ -1,0 +1,67 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+---
+
+<BaseLayout title="SNU JPL Research - Findings">
+  <Header />
+
+  <main>
+    <section class="content">
+      <div class="container">
+        <h2>Research Findings</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </p>
+        <p>
+          Note: This section will be updated as research findings are finalized.
+          The data below represents a sample structure for trap site analysis.
+        </p>
+        <h3>Sample Trap Site Data</h3>
+        <div class="data-grid">
+          <div class="grid-header">Date</div>
+          <div class="grid-header">Location</div>
+          <div class="grid-header">Day Mean Value</div>
+          <div class="grid-header">Day Median Value</div>
+          <div class="grid-header">Day Min Value</div>
+          <div class="grid-header">Day Max Value</div>
+          <div class="grid-header">Night Mean Value</div>
+          <div class="grid-header">Night Median Value</div>
+          <div class="grid-header">Night Min Value</div>
+          <div class="grid-header">Night Max Value</div>
+          <div class="grid-header">Precip</div>
+          <div class="grid-header">Mean WS</div>
+          <div class="grid-header">Min WS</div>
+          <div class="grid-header">Max WS</div>
+          <div class="grid-header">Soil Moisture Mean</div>
+          <div class="grid-header">Solar Radiation (MJ/m^2)</div>
+          <div class="grid-header">Hmean</div>
+          <div>2018-05-11</div>
+          <div>Piedmont</div>
+          <div>36.08</div>
+          <div>35.89</div>
+          <div>34.97</div>
+          <div>38.41</div>
+          <div>22.06</div>
+          <div>22.17</div>
+          <div>21.29</div>
+          <div>22.49</div>
+          <div>0.00</div>
+          <div>11.43</div>
+          <div>6.40</div>
+          <div>14.00</div>
+          <div>0.10</div>
+          <div>26.25</div>
+          <div>47.90</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

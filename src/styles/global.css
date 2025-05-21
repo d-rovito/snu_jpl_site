@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+:root {
+    --primary-red: #841617;
+    --primary-black: #000000;
+    --primary-gray: #999999;
+    --text-white: #ffffff;
+    --transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.7;
+    color: var(--primary-black);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #fff;
+}
+
+main {
+    flex: 1 0 auto;
+    padding-top: 60px;
+}
+
+.hero-page main {
+    padding-top: 0;
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.hero {
+    background: url('../assets/placeholder-research.jpg') center/cover no-repeat;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-overlay {
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    padding: 5rem 0;
+}
+
+.hero h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-white);
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.3rem;
+    color: var(--text-white);
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
+
+.content {
+    background-color: #fff;
+    padding: 2rem 0;
+}
+
+.content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.content h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.content p {
+    margin-bottom: 1rem;
+}
+
+.content ul {
+    list-style: disc;
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+.content ul li {
+    font-size: 1rem;
+}
+
+.content a {
+    color: var(--primary-red);
+    text-decoration: none;
+}
+
+.content a:hover {
+    color: var(--primary-black);
+}
+
+.data-grid {
+    display: grid;
+    grid-template-columns: repeat(17, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--primary-gray);
+    padding: 1rem;
+    overflow-x: auto;
+}
+
+.grid-header {
+    font-weight: 600;
+    background-color: var(--primary-gray);
+    color: var(--text-white);
+    padding: 0.5rem;
+    text-align: center;
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+.data-grid div {
+    padding: 0.5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--primary-gray);
+    min-width: 100px;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.team-card {
+    background-color: #fdfdfd;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 2px solid var(--primary-red);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: var(--transition);
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+}
+
+.team-photo {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+.team-title {
+    font-size: 1rem;
+    color: var(--primary-gray);
+    margin-bottom: 0.5rem;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.cta-button,
+.demo-button {
+    display: inline-block;
+    background-color: var(--primary-red);
+    color: var(--text-white);
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.cta-button:hover,
+.demo-button:hover {
+    background-color: var(--primary-gray);
+    transform: scale(1.05);
+}
+
+.conference-row {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.conference-text {
+    flex: 1;
+}
+
+.conference-image {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    .hero h2 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+    }
+
+    .data-grid {
+        grid-template-columns: repeat(17, 1fr);
+        overflow-x: auto;
+    }
+
+    .conference-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .conference-image {
+        max-width: 100%;
+    }
+}
