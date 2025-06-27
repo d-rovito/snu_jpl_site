@@ -2,7 +2,8 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import "../styles/global.css"; // Updated path
+import "../styles/global.css";
+import Map from "../components/Map.astro";
 ---
 
 <BaseLayout title="SNU JPL Research - Methods">
@@ -38,12 +39,14 @@ import "../styles/global.css"; // Updated path
         <p>
           Google Colab serves as our central platform for data processing,
           integrating GEE scripts with Python for analysis. Our <a
-            href="https://colab.research.google.com/"
+            href="https://colab.research.google.com/drive/1IaBPSFm_R94PQ7JmOx9zuKdrKz2l-eDT"
             target="_blank">Colab notebook</a
-          > (placeholder link) allows users to specify date ranges, buffer zones
-          (1 km radius around trap sites), and environmental parameters, generating
-          visualizations like NDVI bar graphs and time series charts.
+          > allows users to specify date ranges, buffer zones (1 km radius around
+          trap sites), and environmental parameters, generating visualizations like
+          NDVI bar graphs and time series charts.
         </p>
+        <h3>Interactive Map</h3>
+        <Map />
       </div>
     </section>
   </main>

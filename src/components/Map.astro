@@ -1,0 +1,285 @@
+---
+
+---
+
+<div id="map" style="height: 600px; width: 100%; margin-top: 2rem;"></div>
+<div
+  id="coords"
+  style="position: absolute; bottom: 10px; left: 60px; background: white; padding: 5px; z-index: 1000;"
+>
+</div>
+
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet.fullscreen@1.0.2/Control.FullScreen.css"
+/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+<script
+  src="https://unpkg.com/leaflet.fullscreen@1.0.2/Control.FullScreen.js"
+  defer></script>
+
+<script type="module" defer>
+  document.addEventListener("DOMContentLoaded", () => {
+    const bounds = [
+      [34.09120863713236, -118.18481840041434],
+      [36.94263133375109, -86.71005342201046],
+    ];
+
+    const map = L.map("map", {
+      maxZoom: 10,
+      minZoom: 5,
+      zoomControl: true,
+      fullscreenControl: true, // Enable fullscreen control
+      fullscreenControlOptions: {
+        position: "topright",
+        title: "Enter Fullscreen",
+        titleCancel: "Exit Fullscreen",
+      },
+    }).fitBounds(bounds);
+
+    // Base maps
+    const osm = L.tileLayer(
+      "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      {
+        attribution: "© OpenStreetMap contributors",
+        maxZoom: 18,
+      }
+    ).addTo(map);
+
+    const esri = L.tileLayer(
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+      {
+        attribution: "© Esri",
+        maxZoom: 18,
+      }
+    );
+
+    // Elevation layer
+    const elevationLayer = L.tileLayer(
+      "/tiles/Elevation/elevation_map_merc/{z}/{x}/{y}.png",
+      {
+        attribution: "Elevation data © USGS/SRTM",
+        maxZoom: 10,
+        minZoom: 5,
+        opacity: 0.7,
+        bounds: bounds,
+        errorTileUrl: "",
+        tileSize: 256,
+        noWrap: true,
+        tms: true,
+      }
+    ).addTo(map);
+
+    // Custom layer control with opacity slider
+    const CustomLayerControl = L.Control.Layers.extend({
+      _addItem: function (obj) {
+        const label = document.createElement("label");
+        const checked = this._map.hasLayer(obj.layer);
+        const input = document.createElement("input");
+        input.type = obj.overlay ? "checkbox" : "radio";
+        input.className = "leaflet-control-layers-selector";
+        input.defaultChecked = checked;
+        if (!obj.overlay) {
+          input.name = "leaflet-base-layers";
+        }
+        input.layerId = L.stamp(obj.layer);
+
+        const baseLayers = {
+          OpenStreetMap: osm,
+          "Esri Satellite": esri,
+        };
+
+        input.onchange = () => {
+          if (!obj.overlay) {
+            // Remove all base layers first
+            Object.values(baseLayers).forEach((layer) => {
+              if (map.hasLayer(layer)) map.removeLayer(layer);
+            });
+            // Add the selected base layer
+            map.addLayer(obj.layer);
+          } else {
+            // Toggle overlay
+            if (map.hasLayer(obj.layer)) {
+              map.removeLayer(obj.layer);
+            } else {
+              map.addLayer(obj.layer);
+            }
+          }
+
+          // Opacity slider toggle logic
+          if (obj.name === "Elevation" && input.checked) {
+            sliderContainer.style.display = "block";
+          } else if (obj.name === "Elevation") {
+            sliderContainer.style.display = "none";
+          }
+        };
+
+        const name = document.createElement("span");
+        name.innerHTML = " " + obj.name;
+
+        label.appendChild(input);
+        label.appendChild(name);
+
+        // Add opacity slider for elevation layer
+        const sliderContainer = document.createElement("div");
+        sliderContainer.style.marginTop = "5px";
+        sliderContainer.style.display =
+          obj.name === "Elevation" && checked ? "block" : "none";
+        if (obj.name === "Elevation") {
+          const sliderLabel = document.createElement("label");
+          sliderLabel.innerHTML = "Opacity: ";
+          const slider = document.createElement("input");
+          slider.type = "range";
+          slider.min = "0";
+          slider.max = "1";
+          slider.step = "0.1";
+          slider.value = "0.7";
+          slider.style.width = "100px";
+          slider.oninput = () => {
+            elevationLayer.setOpacity(slider.value);
+          };
+          sliderContainer.appendChild(sliderLabel);
+          sliderContainer.appendChild(slider);
+          label.appendChild(sliderContainer);
+        }
+
+        const container = obj.overlay
+          ? this._overlaysList
+          : this._baseLayersList;
+        container.appendChild(label);
+        return label;
+      },
+    });
+
+    const layerControl = new CustomLayerControl(
+      {
+        OpenStreetMap: osm,
+        "Esri Satellite": esri,
+      },
+      { Elevation: elevationLayer }
+    ).addTo(map);
+
+    // Scale control
+    L.control.scale({ metric: true, imperial: true }).addTo(map);
+
+    // Settings control with Pixel Inspector
+    const SettingsControl = L.Control.extend({
+      options: { position: "topright" },
+      onAdd: function (map) {
+        const container = L.DomUtil.create(
+          "div",
+          "leaflet-control leaflet-bar"
+        );
+        container.style.background = "white";
+        container.style.padding = "5px";
+
+        // Settings button
+        const button = L.DomUtil.create("button", "", container);
+        button.innerHTML = "⚙️ Settings";
+        button.style.width = "100px";
+        button.style.padding = "5px";
+
+        // Settings panel
+        const panel = L.DomUtil.create("div", "", container);
+        panel.style.display = "none";
+        panel.style.padding = "10px";
+        panel.style.background = "white";
+        panel.style.border = "1px solid #ccc";
+
+        // Pixel Inspector button
+        const inspectorButton = L.DomUtil.create("button", "", panel);
+        inspectorButton.innerHTML = "Enable Pixel Inspector";
+        inspectorButton.style.width = "100%";
+        inspectorButton.style.padding = "5px";
+        let inspectorActive = false;
+
+        const clickHandler = (e) => {
+          const latlng = e.latlng;
+          L.popup()
+            .setLatLng(latlng)
+            .setContent(
+              `Coordinates: ${latlng.lat.toFixed(4)}, ${latlng.lng.toFixed(4)}<br>Elevation: ~500m (estimated)`
+            )
+            .openOn(map);
+        };
+
+        inspectorButton.onclick = () => {
+          inspectorActive = !inspectorActive;
+          inspectorButton.innerHTML = inspectorActive
+            ? "Disable Pixel Inspector"
+            : "Enable Pixel Inspector";
+          if (inspectorActive) {
+            map.on("click", clickHandler);
+          } else {
+            map.off("click", clickHandler);
+          }
+        };
+
+        // 🔽 Add Fullscreen toggle button here
+        const fullscreenButton = L.DomUtil.create("button", "", panel);
+        fullscreenButton.innerHTML = "Enter Fullscreen";
+        fullscreenButton.style.width = "100%";
+        fullscreenButton.style.padding = "5px";
+        fullscreenButton.style.marginTop = "10px";
+
+        fullscreenButton.onclick = () => {
+          const mapContainer = document.getElementById("map");
+          if (!document.fullscreenElement) {
+            mapContainer.requestFullscreen().catch((err) => {
+              alert(`Error attempting fullscreen: ${err.message}`);
+            });
+          } else {
+            document.exitFullscreen();
+          }
+        };
+
+        document.addEventListener("fullscreenchange", () => {
+          fullscreenButton.innerHTML = document.fullscreenElement
+            ? "Exit Fullscreen"
+            : "Enter Fullscreen";
+        });
+
+        button.onclick = () => {
+          panel.style.display =
+            panel.style.display === "none" ? "block" : "none";
+        };
+
+        L.DomEvent.disableClickPropagation(container);
+        return container;
+      },
+    });
+    map.addControl(new SettingsControl());
+
+    // Layer reordering (simulated by updating zIndex)
+    const layers = [osm, esri, elevationLayer];
+    function updateLayerOrder() {
+      layers.forEach((layer, index) => {
+        if (map.hasLayer(layer)) {
+          layer.setZIndex(index + 1);
+        }
+      });
+    }
+
+    map.on("layeradd layerremove", () => {
+      const activeLayers = [];
+      if (map.hasLayer(osm)) activeLayers.push(osm);
+      if (map.hasLayer(esri)) activeLayers.push(esri);
+      if (map.hasLayer(elevationLayer)) activeLayers.push(elevationLayer);
+      layers.length = 0;
+      layers.push(...activeLayers);
+      updateLayerOrder();
+    });
+
+    // Debug tile loads and errors
+    elevationLayer.on("tileload", (e) => {
+      console.log("Tile loaded:", e.tile.src);
+    });
+    elevationLayer.on("tileerror", (error, tile) => {
+      console.log("Tile error:", error, tile);
+    });
+  });
+</script>
