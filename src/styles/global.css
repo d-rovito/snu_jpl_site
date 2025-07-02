@@ -75,6 +75,18 @@ main {
 .content h3 {
     font-size: 1.8rem;
     margin-bottom: 1rem;
+    position: relative;
+}
+
+.content h3::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background-color: var(--primary-red);
+    border-radius: 2px;
 }
 
 .content p {
@@ -102,29 +114,29 @@ main {
 
 .data-grid {
     display: grid;
-    grid-template-columns: repeat(17, 1fr);
-    gap: 1rem;
-    margin-bottom: 2rem;
-    border: 1px solid var(--primary-gray);
-    padding: 1rem;
+    grid-template-columns: repeat(17, minmax(100px, 1fr));
+    gap: 0;
     overflow-x: auto;
+    border: 1px solid var(--primary-gray);
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
 }
 
 .grid-header {
     font-weight: 600;
-    background-color: var(--primary-gray);
+    background-color: var(--primary-red);
     color: var(--text-white);
-    padding: 0.5rem;
+    padding: 0.75rem;
     text-align: center;
-    white-space: normal;
-    word-wrap: break-word;
+    border-bottom: 2px solid #fff;
 }
 
 .data-grid div {
-    padding: 0.5rem;
+    padding: 0.65rem;
     text-align: center;
-    border-bottom: 1px solid var(--primary-gray);
-    min-width: 100px;
+    border-bottom: 1px solid #eee;
+    font-size: 0.95rem;
 }
 
 .team-grid {
@@ -148,18 +160,35 @@ main {
     transform: translateY(-5px);
 }
 
+/* Image */
 .team-photo {
-    width: 100%;
-    max-width: 150px;
-    height: auto;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
     border-radius: 50%;
     margin-bottom: 1rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+/* Name styling */
+.team-card a,
+.team-card h4,
+.team-card h4 a {
+    color: var(--primary-black);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0.5rem 0;
+    text-decoration: none !important;
+    display: inline-block;
+}
+
+/* Title or subtitle */
 .team-title {
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: var(--primary-gray);
-    margin-bottom: 0.5rem;
+    margin-top: 0.25rem;
 }
 
 .button-group {
@@ -173,7 +202,7 @@ main {
 .demo-button {
     display: inline-block;
     background-color: var(--primary-red);
-    color: var(--text-white);
+    color: var(--text-white) !important;
     padding: 0.75rem 1.5rem;
     text-decoration: none;
     border-radius: 5px;
@@ -204,6 +233,56 @@ main {
     height: auto;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.mentor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    max-width: 700px;
+    margin: 2rem auto;
+    gap: 2rem;
+}
+
+.team-photo {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+.section-link {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.section-link a {
+    font-weight: 600;
+    color: var(--primary-red);
+    text-decoration: none;
+}
+
+.section-link a:hover {
+    color: var(--primary-black);
+}
+
+.hero-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.highlight-item {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    color: var(--text-white);
+    font-weight: 600;
+    font-size: 0.95rem;
+    backdrop-filter: blur(3px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 @media (max-width: 768px) {

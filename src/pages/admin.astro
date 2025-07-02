@@ -1,0 +1,45 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
+---
+
+<BaseLayout title="Admin Portal">
+  <Header />
+
+  <main>
+    <section class="content">
+      <div
+        class="container"
+        style="max-width: 600px; margin: 0 auto; text-align: center;"
+      >
+        <h2>Admin Portal</h2>
+        <p>
+          Please sign in with your Google account to manage the site content.
+        </p>
+
+        <!-- Placeholder for Google Sign-In -->
+        <div id="google-signin-button" style="margin: 2rem 0;">
+          <!-- Replace this with actual sign-in button when implemented -->
+          <button class="cta-button" disabled
+            >Sign in with Google (Coming Soon)</button
+          >
+        </div>
+
+        <!-- Future admin features -->
+        <div style="margin-top: 3rem;">
+          <h3>Coming Soon:</h3>
+          <ul style="list-style: none; padding: 0;">
+            <li>✔ Secure authentication</li>
+            <li>✔ Content editing tools</li>
+            <li>✔ Image and text updates</li>
+            <li>✔ Conference data entry</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>

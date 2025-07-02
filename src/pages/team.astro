@@ -5,6 +5,8 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 import personPlaceholder from "../assets/person-placeholder.jpg";
+import francaHeadshot from "../assets/Franca-Caio.webp";
+import podestHeadshot from "../assets/ErikaPodest.png";
 ---
 
 <BaseLayout title="SNU JPL Research - Team">
@@ -15,75 +17,72 @@ import personPlaceholder from "../assets/person-placeholder.jpg";
       <div class="container">
         <h2>Our Team</h2>
         <p>
-          The project team includes six SNU undergraduate students, mentored by
-          Dr. Caio França (SNU) and Dr. Erika Podest (NASA JPL). Below are
-          placeholder profiles, to be updated with actual team members.
+          The project team includes SNU students, alumni, and mentors. Primary
+          faculty mentors are Dr. Caio França (SNU) and Dr. Erika Podest (NASA
+          JPL), with students contributing through fieldwork, data analysis, and
+          satellite research.
         </p>
+
+        <!-- Mentors -->
+        <div class="mentor-grid">
+          <div class="team-card">
+            <Image
+              src={francaHeadshot}
+              alt="Dr. Caio França"
+              class="team-photo"
+              width={150}
+              height={150}
+            />
+            <h4>Dr. Caio França</h4>
+            <p class="team-title">Faculty Mentor – SNU</p>
+            <p>
+              Dr. França directs the QERC program at SNU and leads research into
+              mosquito ecology and virus genomics. His work integrates field
+              sampling, molecular biology, and satellite data to better
+              understand mosquito-borne disease risk in Oklahoma and Costa Rica.
+            </p>
+          </div>
+          <div class="team-card">
+            <Image
+              src={podestHeadshot}
+              alt="Dr. Erika Podest"
+              class="team-photo"
+              width={150}
+              height={150}
+            />
+            <h4>Dr. Erika Podest</h4>
+            <p class="team-title">Science Mentor – NASA JPL</p>
+            <p>
+              Dr. Podest is a scientist at NASA JPL specializing in remote
+              sensing of wetlands and boreal ecosystems. She mentors student
+              researchers and leads training on radar satellite data for
+              environmental monitoring through NASA’s ARSET program.
+            </p>
+          </div>
+        </div>
+
+        <!-- Student Team -->
         <div class="team-grid">
-          <div class="team-card">
-            <Image
-              src={personPlaceholder}
-              alt="John Doe 1"
-              class="team-photo"
-              width={150}
-              height={150}
-            />
-            <h3>John Doe</h3>
-            <p class="team-title">Undergraduate Researcher</p>
-            <p>
-              John is a dedicated student at SNU, contributing to the
-              mosquito-borne disease prediction project. His work focuses on
-              analyzing environmental data to support model development.
-            </p>
-          </div>
-          <div class="team-card">
-            <Image
-              src={personPlaceholder}
-              alt="John Doe 2"
-              class="team-photo"
-              width={150}
-              height={150}
-            />
-            <h3>John Doe</h3>
-            <p class="team-title">Undergraduate Researcher</p>
-            <p>
-              John is a dedicated student at SNU, contributing to the
-              mosquito-borne disease prediction project. His work focuses on
-              analyzing environmental data to support model development.
-            </p>
-          </div>
-          <div class="team-card">
-            <Image
-              src={personPlaceholder}
-              alt="John Doe 3"
-              class="team-photo"
-              width={150}
-              height={150}
-            />
-            <h3>John Doe</h3>
-            <p class="team-title">Undergraduate Researcher</p>
-            <p>
-              John is a dedicated student at SNU, contributing to the
-              mosquito-borne disease prediction project. His work focuses on
-              analyzing environmental data to support model development.
-            </p>
-          </div>
-          <div class="team-card">
-            <Image
-              src={personPlaceholder}
-              alt="John Doe 4"
-              class="team-photo"
-              width={150}
-              height={150}
-            />
-            <h3>John Doe</h3>
-            <p class="team-title">Undergraduate Researcher</p>
-            <p>
-              John is a dedicated student at SNU, contributing to the
-              mosquito-borne disease prediction project. His work focuses on
-              analyzing environmental data to support model development.
-            </p>
-          </div>
+          {
+            Array.from({ length: 6 }).map((_, index) => (
+              <div class="team-card">
+                <Image
+                  src={personPlaceholder}
+                  alt="John Doe"
+                  class="team-photo"
+                  width={150}
+                  height={150}
+                />
+                <h4>John Doe</h4>
+                <p class="team-title">Undergraduate Researcher</p>
+                <p>
+                  John is a dedicated student at SNU, contributing to the
+                  mosquito-borne disease prediction project. His work focuses on
+                  analyzing environmental data to support model development.
+                </p>
+              </div>
+            ))
+          }
         </div>
       </div>
     </section>
